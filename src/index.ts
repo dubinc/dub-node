@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from './core';
 import * as Errors from './error';
@@ -13,7 +13,7 @@ export interface ClientOptions {
    */
   token?: string | undefined;
 
-  projectSlug?: string | null | undefined;
+  workspaceId?: string | null | undefined;
 
   /**
    * Override the default base URL for the API, e.g., "https://api.example.com/v2/"
@@ -75,7 +75,7 @@ export interface ClientOptions {
 /** API Client for interfacing with the Dub API. */
 export class Dub extends Core.APIClient {
   token: string;
-  projectSlug: string | null;
+  workspaceId: string | null;
 
   private _options: ClientOptions;
 
@@ -83,7 +83,7 @@ export class Dub extends Core.APIClient {
    * API Client for interfacing with the Dub API.
    *
    * @param {string | undefined} [opts.token=process.env['DUB_API_KEY'] ?? undefined]
-   * @param {string | null | undefined} [opts.projectSlug]
+   * @param {string | null | undefined} [opts.workspaceId]
    * @param {string} [opts.baseURL=process.env['DUB_BASE_URL'] ?? https://api.dub.co] - Override the default base URL for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
@@ -95,7 +95,7 @@ export class Dub extends Core.APIClient {
   constructor({
     baseURL = Core.readEnv('DUB_BASE_URL'),
     token = Core.readEnv('DUB_API_KEY'),
-    projectSlug = null,
+    workspaceId = null,
     ...opts
   }: ClientOptions = {}) {
     if (token === undefined) {
@@ -106,7 +106,7 @@ export class Dub extends Core.APIClient {
 
     const options: ClientOptions = {
       token,
-      projectSlug,
+      workspaceId,
       ...opts,
       baseURL: baseURL || `https://api.dub.co`,
     };
@@ -121,7 +121,7 @@ export class Dub extends Core.APIClient {
     this._options = options;
 
     this.token = token;
-    this.projectSlug = projectSlug;
+    this.workspaceId = workspaceId;
   }
 
   links: API.Links = new API.Links(this);
@@ -204,9 +204,6 @@ export namespace Dub {
   export import QrRetrieveParams = API.QrRetrieveParams;
 
   export import Projects = API.Projects;
-  export import ProjectRetrieveResponse = API.ProjectRetrieveResponse;
-  export import ProjectListResponse = API.ProjectListResponse;
-  export import ProjectRetrieveParams = API.ProjectRetrieveParams;
 }
 
 export default Dub;

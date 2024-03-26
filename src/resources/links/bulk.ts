@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from 'dub/core';
 import { APIResource } from 'dub/resource';
@@ -6,11 +6,11 @@ import * as BulkAPI from 'dub/resources/links/bulk';
 
 export class Bulk extends APIResource {
   /**
-   * Bulk create up to 100 links for the authenticated project.
+   * Bulk create up to 100 links for the authenticated workspace.
    */
   create(params: BulkCreateParams, options?: Core.RequestOptions): Core.APIPromise<BulkCreateResponse> {
-    const { projectSlug = this._client.projectSlug, body } = params;
-    return this._client.post('/links/bulk', { query: { projectSlug }, body: body, ...options });
+    const { workspaceId = this._client.workspaceId, body } = params;
+    return this._client.post('/links/bulk', { query: { workspaceId }, body: body, ...options });
   }
 }
 
@@ -56,7 +56,7 @@ export namespace BulkCreateResponse {
 
     /**
      * The domain of the short link. If not provided, the primary domain for the
-     * project will be used (or `dub.sh` if the project has no domains).
+     * workspace will be used (or `dub.sh` if the workspace has no domains).
      */
     domain: string;
 
@@ -100,7 +100,8 @@ export namespace BulkCreateResponse {
     password: string | null;
 
     /**
-     * The project ID of the short link.
+     * @deprecated: [DEPRECATED] (use workspaceId instead): The project ID of the short
+     * link.
      */
     projectId: string;
 
@@ -132,7 +133,7 @@ export namespace BulkCreateResponse {
     shortLink: string;
 
     /**
-     * @deprecated: [DEPRECATED (use `tags` instead)]: The unique ID of the tag
+     * @deprecated: [DEPRECATED] (use `tags` instead): The unique ID of the tag
      * assigned to the short link.
      */
     tagId: string | null;
@@ -187,6 +188,11 @@ export namespace BulkCreateResponse {
      * The UTM term of the short link.
      */
     utm_term: string | null;
+
+    /**
+     * The workspace ID of the short link.
+     */
+    workspaceId: string;
   }
 
   export namespace BulkCreateResponseItem {
@@ -211,10 +217,9 @@ export namespace BulkCreateResponse {
 
 export interface BulkCreateParams {
   /**
-   * Query param: The slug for the project that the link belongs to. E.g. for
-   * `app.dub.co/acme`, the projectSlug is `acme`.
+   * Query param: The ID of the workspace to create the link for.
    */
-  projectSlug?: string;
+  workspaceId?: string;
 
   /**
    * Body param:
@@ -252,7 +257,7 @@ export namespace BulkCreateParams {
 
     /**
      * The domain of the short link. If not provided, the primary domain for the
-     * project will be used (or `dub.sh` if the project has no domains).
+     * workspace will be used (or `dub.sh` if the workspace has no domains).
      */
     domain?: string;
 
@@ -313,7 +318,7 @@ export namespace BulkCreateParams {
     rewrite?: boolean;
 
     /**
-     * @deprecated: [DEPRECATED (use tagIds instead)]: The unique ID of the tag
+     * @deprecated: [DEPRECATED] (use tagIds instead): The unique ID of the tag
      * assigned to the short link.
      */
     tagId?: string | null;

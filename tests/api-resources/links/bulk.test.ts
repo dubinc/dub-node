@@ -1,19 +1,19 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import Dub from 'dub';
 import { Response } from 'node-fetch';
 
 const dub = new Dub({
   token: 'My Token',
-  projectSlug: 'dub_project_slug',
+  workspaceId: 'dub_workspace_id',
   baseURL: process.env['TEST_API_BASE_URL'] ?? 'http://127.0.0.1:4010',
 });
 
 describe('resource bulk', () => {
   test('create: only required params', async () => {
     const responsePromise = dub.links.bulk.create({
-      projectSlug: 'x',
-      body: [{ url: 'https://example.com' }, { url: 'https://example.com' }, { url: 'https://example.com' }],
+      workspaceId: 'string',
+      body: [{ url: 'string' }, { url: 'string' }, { url: 'string' }],
     });
     const rawResponse = await responsePromise.asResponse();
     expect(rawResponse).toBeInstanceOf(Response);
@@ -26,13 +26,13 @@ describe('resource bulk', () => {
 
   test('create: required and optional params', async () => {
     const response = await dub.links.bulk.create({
-      projectSlug: 'x',
+      workspaceId: 'string',
       body: [
         {
           domain: 'string',
           key: 'string',
           prefix: 'string',
-          url: 'https://example.com',
+          url: 'string',
           archived: true,
           expiresAt: '2019-12-27T18:11:19.117Z',
           password: 'string',
@@ -53,7 +53,7 @@ describe('resource bulk', () => {
           domain: 'string',
           key: 'string',
           prefix: 'string',
-          url: 'https://example.com',
+          url: 'string',
           archived: true,
           expiresAt: '2019-12-27T18:11:19.117Z',
           password: 'string',
@@ -74,7 +74,7 @@ describe('resource bulk', () => {
           domain: 'string',
           key: 'string',
           prefix: 'string',
-          url: 'https://example.com',
+          url: 'string',
           archived: true,
           expiresAt: '2019-12-27T18:11:19.117Z',
           password: 'string',

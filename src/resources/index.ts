@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export {
   LinkCreateResponse,
@@ -11,10 +11,5 @@ export {
   LinkDeleteLinkParams,
   Links,
 } from './links/links';
-export {
-  ProjectRetrieveResponse,
-  ProjectListResponse,
-  ProjectRetrieveParams,
-  Projects,
-} from './projects/projects';
+export { Projects } from './projects/projects';
 export { QrRetrieveParams, Qr } from './qr';

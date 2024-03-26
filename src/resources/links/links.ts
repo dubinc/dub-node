@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 import * as Core from 'dub/core';
 import { APIResource } from 'dub/resource';
@@ -11,44 +11,44 @@ export class Links extends APIResource {
   bulk: BulkAPI.Bulk = new BulkAPI.Bulk(this._client);
 
   /**
-   * Create a new link for the authenticated project.
+   * Create a new link for the authenticated workspace.
    */
   create(params: LinkCreateParams, options?: Core.RequestOptions): Core.APIPromise<LinkCreateResponse> {
-    const { projectSlug = this._client.projectSlug, ...body } = params;
-    return this._client.post('/links', { query: { projectSlug }, body, ...options });
+    const { workspaceId = this._client.workspaceId, ...body } = params;
+    return this._client.post('/links', { query: { workspaceId }, body, ...options });
   }
 
   /**
-   * Edit a link for the authenticated project.
+   * Edit a link for the authenticated workspace.
    */
   update(
     linkId: string,
     params: LinkUpdateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LinkUpdateResponse> {
-    const { projectSlug = this._client.projectSlug, ...body } = params;
-    return this._client.put(`/links/${linkId}`, { query: { projectSlug }, body, ...options });
+    const { workspaceId = this._client.workspaceId, ...body } = params;
+    return this._client.put(`/links/${linkId}`, { query: { workspaceId }, body, ...options });
   }
 
   /**
-   * Retrieve a list of links for the authenticated project. The list will be
+   * Retrieve a list of links for the authenticated workspace. The list will be
    * paginated and the provided query parameters allow filtering the returned links.
    */
   list(params: LinkListParams, options?: Core.RequestOptions): Core.APIPromise<LinkListResponse> {
-    const { projectSlug = this._client.projectSlug, ...query } = params;
-    return this._client.get('/links', { query: { projectSlug, ...query }, ...options });
+    const { workspaceId = this._client.workspaceId, ...query } = params;
+    return this._client.get('/links', { query: { workspaceId, ...query }, ...options });
   }
 
   /**
-   * Delete a link for the authenticated project.
+   * Delete a link for the authenticated workspace.
    */
   deleteLink(
     linkId: string,
     params: LinkDeleteLinkParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<LinkDeleteLinkResponse> {
-    const { projectSlug = this._client.projectSlug } = params;
-    return this._client.delete(`/links/${linkId}`, { query: { projectSlug }, ...options });
+    const { workspaceId = this._client.workspaceId } = params;
+    return this._client.delete(`/links/${linkId}`, { query: { workspaceId }, ...options });
   }
 }
 
@@ -91,7 +91,7 @@ export interface LinkCreateResponse {
 
   /**
    * The domain of the short link. If not provided, the primary domain for the
-   * project will be used (or `dub.sh` if the project has no domains).
+   * workspace will be used (or `dub.sh` if the workspace has no domains).
    */
   domain: string;
 
@@ -135,7 +135,8 @@ export interface LinkCreateResponse {
   password: string | null;
 
   /**
-   * The project ID of the short link.
+   * @deprecated: [DEPRECATED] (use workspaceId instead): The project ID of the short
+   * link.
    */
   projectId: string;
 
@@ -167,7 +168,7 @@ export interface LinkCreateResponse {
   shortLink: string;
 
   /**
-   * @deprecated: [DEPRECATED (use `tags` instead)]: The unique ID of the tag
+   * @deprecated: [DEPRECATED] (use `tags` instead): The unique ID of the tag
    * assigned to the short link.
    */
   tagId: string | null;
@@ -222,6 +223,11 @@ export interface LinkCreateResponse {
    * The UTM term of the short link.
    */
   utm_term: string | null;
+
+  /**
+   * The workspace ID of the short link.
+   */
+  workspaceId: string;
 }
 
 export namespace LinkCreateResponse {
@@ -282,7 +288,7 @@ export interface LinkUpdateResponse {
 
   /**
    * The domain of the short link. If not provided, the primary domain for the
-   * project will be used (or `dub.sh` if the project has no domains).
+   * workspace will be used (or `dub.sh` if the workspace has no domains).
    */
   domain: string;
 
@@ -326,7 +332,8 @@ export interface LinkUpdateResponse {
   password: string | null;
 
   /**
-   * The project ID of the short link.
+   * @deprecated: [DEPRECATED] (use workspaceId instead): The project ID of the short
+   * link.
    */
   projectId: string;
 
@@ -358,7 +365,7 @@ export interface LinkUpdateResponse {
   shortLink: string;
 
   /**
-   * @deprecated: [DEPRECATED (use `tags` instead)]: The unique ID of the tag
+   * @deprecated: [DEPRECATED] (use `tags` instead): The unique ID of the tag
    * assigned to the short link.
    */
   tagId: string | null;
@@ -413,6 +420,11 @@ export interface LinkUpdateResponse {
    * The UTM term of the short link.
    */
   utm_term: string | null;
+
+  /**
+   * The workspace ID of the short link.
+   */
+  workspaceId: string;
 }
 
 export namespace LinkUpdateResponse {
@@ -476,7 +488,7 @@ export namespace LinkListResponse {
 
     /**
      * The domain of the short link. If not provided, the primary domain for the
-     * project will be used (or `dub.sh` if the project has no domains).
+     * workspace will be used (or `dub.sh` if the workspace has no domains).
      */
     domain: string;
 
@@ -520,7 +532,8 @@ export namespace LinkListResponse {
     password: string | null;
 
     /**
-     * The project ID of the short link.
+     * @deprecated: [DEPRECATED] (use workspaceId instead): The project ID of the short
+     * link.
      */
     projectId: string;
 
@@ -552,7 +565,7 @@ export namespace LinkListResponse {
     shortLink: string;
 
     /**
-     * @deprecated: [DEPRECATED (use `tags` instead)]: The unique ID of the tag
+     * @deprecated: [DEPRECATED] (use `tags` instead): The unique ID of the tag
      * assigned to the short link.
      */
     tagId: string | null;
@@ -607,6 +620,11 @@ export namespace LinkListResponse {
      * The UTM term of the short link.
      */
     utm_term: string | null;
+
+    /**
+     * The workspace ID of the short link.
+     */
+    workspaceId: string;
   }
 
   export namespace LinkListResponseItem {
@@ -668,7 +686,7 @@ export interface LinkDeleteLinkResponse {
 
   /**
    * The domain of the short link. If not provided, the primary domain for the
-   * project will be used (or `dub.sh` if the project has no domains).
+   * workspace will be used (or `dub.sh` if the workspace has no domains).
    */
   domain: string;
 
@@ -712,7 +730,8 @@ export interface LinkDeleteLinkResponse {
   password: string | null;
 
   /**
-   * The project ID of the short link.
+   * @deprecated: [DEPRECATED] (use workspaceId instead): The project ID of the short
+   * link.
    */
   projectId: string;
 
@@ -744,7 +763,7 @@ export interface LinkDeleteLinkResponse {
   shortLink: string;
 
   /**
-   * @deprecated: [DEPRECATED (use `tags` instead)]: The unique ID of the tag
+   * @deprecated: [DEPRECATED] (use `tags` instead): The unique ID of the tag
    * assigned to the short link.
    */
   tagId: string | null;
@@ -799,6 +818,11 @@ export interface LinkDeleteLinkResponse {
    * The UTM term of the short link.
    */
   utm_term: string | null;
+
+  /**
+   * The workspace ID of the short link.
+   */
+  workspaceId: string;
 }
 
 export namespace LinkDeleteLinkResponse {
@@ -822,10 +846,9 @@ export namespace LinkDeleteLinkResponse {
 
 export interface LinkCreateParams {
   /**
-   * Query param: The slug for the project that the link belongs to. E.g. for
-   * `app.dub.co/acme`, the projectSlug is `acme`.
+   * Query param: The ID of the workspace to create the link for.
    */
-  projectSlug?: string;
+  workspaceId?: string;
 
   /**
    * Body param: The destination URL of the short link.
@@ -857,7 +880,7 @@ export interface LinkCreateParams {
 
   /**
    * Body param: The domain of the short link. If not provided, the primary domain
-   * for the project will be used (or `dub.sh` if the project has no domains).
+   * for the workspace will be used (or `dub.sh` if the workspace has no domains).
    */
   domain?: string;
 
@@ -919,7 +942,7 @@ export interface LinkCreateParams {
   rewrite?: boolean;
 
   /**
-   * Body param: [DEPRECATED (use tagIds instead)]: The unique ID of the tag assigned
+   * Body param: [DEPRECATED] (use tagIds instead): The unique ID of the tag assigned
    * to the short link.
    */
   tagId?: string | null;
@@ -938,10 +961,9 @@ export interface LinkCreateParams {
 
 export interface LinkUpdateParams {
   /**
-   * Query param: The slug for the project that the link belongs to. E.g. for
-   * `app.dub.co/acme`, the projectSlug is `acme`.
+   * Query param: The ID of the workspace the link belongs to.
    */
-  projectSlug?: string;
+  workspaceId?: string;
 
   /**
    * Body param: The destination URL of the short link.
@@ -973,7 +995,7 @@ export interface LinkUpdateParams {
 
   /**
    * Body param: The domain of the short link. If not provided, the primary domain
-   * for the project will be used (or `dub.sh` if the project has no domains).
+   * for the workspace will be used (or `dub.sh` if the workspace has no domains).
    */
   domain?: string;
 
@@ -1035,7 +1057,7 @@ export interface LinkUpdateParams {
   rewrite?: boolean;
 
   /**
-   * Body param: [DEPRECATED (use tagIds instead)]: The unique ID of the tag assigned
+   * Body param: [DEPRECATED] (use tagIds instead): The unique ID of the tag assigned
    * to the short link.
    */
   tagId?: string | null;
@@ -1054,14 +1076,13 @@ export interface LinkUpdateParams {
 
 export interface LinkListParams {
   /**
-   * The slug for the project that the link belongs to. E.g. for `app.dub.co/acme`,
-   * the projectSlug is `acme`.
+   * The ID of the workspace the link belongs to.
    */
-  projectSlug?: string;
+  workspaceId?: string;
 
   /**
    * The domain to filter the links by. E.g. `ac.me`. If not provided, all links for
-   * the project will be returned.
+   * the workspace will be returned.
    */
   domain?: string;
 
@@ -1089,7 +1110,7 @@ export interface LinkListParams {
   sort?: 'createdAt' | 'clicks' | 'lastClicked';
 
   /**
-   * [DEPRECATED (use tagIds instead)]: The tag ID to filter the links by.
+   * [DEPRECATED] (use tagIds instead): The tag ID to filter the links by.
    */
   tagId?: string;
 
@@ -1111,10 +1132,9 @@ export interface LinkListParams {
 
 export interface LinkDeleteLinkParams {
   /**
-   * The slug for the project that the link belongs to. E.g. for `app.dub.co/acme`,
-   * the projectSlug is `acme`.
+   * The ID of the workspace the link belongs to.
    */
-  projectSlug?: string;
+  workspaceId?: string;
 }
 
 export namespace Links {

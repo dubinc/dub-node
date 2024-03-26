@@ -1,4 +1,4 @@
-// File generated from our OpenAPI spec by Stainless.
+// File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 export { BulkCreateResponse, BulkCreateParams, Bulk } from './bulk';
 export { InfoRetrieveResponse, InfoRetrieveParams, Info } from './info';

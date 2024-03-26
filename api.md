@@ -42,14 +42,4 @@ Methods:
 
 # Projects
 
-Types:
-
-- <code><a href="./src/resources/projects/projects.ts">ProjectRetrieveResponse</a></code>
-- <code><a href="./src/resources/projects/projects.ts">ProjectListResponse</a></code>
-
-Methods:
-
-- <code title="get /projects/{projectSlug}">client.projects.<a href="./src/resources/projects/projects.ts">retrieve</a>({ ...params }) -> ProjectRetrieveResponse</code>
-- <code title="get /projects">client.projects.<a href="./src/resources/projects/projects.ts">list</a>() -> ProjectListResponse</code>
-
 ## Tags
