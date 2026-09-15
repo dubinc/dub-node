@@ -227,7 +227,7 @@ export type UpdateCommissionResponseBody = {
    */
   userId?: string | null | undefined;
   /**
-   * User-provided metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`).
+   * Metadata from the associated lead or sale event (`lead.metadata` / `sale.metadata`), or from Stripe webhook metadata.
    */
   metadata: { [k: string]: any } | null;
   /**

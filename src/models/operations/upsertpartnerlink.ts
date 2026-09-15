@@ -123,7 +123,7 @@ export type UpsertPartnerLinkRequestBody = {
    */
   tenantId?: string | null | undefined;
   /**
-   * The URL to upsert for. Will throw an error if the domain doesn't match the program's default URL domain.
+   * The URL to upsert for.
    */
   url: string;
   /**

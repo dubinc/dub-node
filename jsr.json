@@ -2,7 +2,7 @@
 
 {
   "name": "dub",
-  "version": "0.73.8",
+  "version": "0.73.9",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    
