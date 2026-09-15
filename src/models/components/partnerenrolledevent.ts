@@ -420,6 +420,7 @@ export type PartnerEnrolledEventData = {
   leadRewardId?: string | null | undefined;
   saleRewardId?: string | null | undefined;
   referralRewardId?: string | null | undefined;
+  customRewardId?: string | null | undefined;
   discountId?: string | null | undefined;
   /**
    * If the partner submitted an application to join the program, this is the ID of the application.
@@ -1527,6 +1528,7 @@ export const PartnerEnrolledEventData$inboundSchema: z.ZodType<
   leadRewardId: z.nullable(z.string()).optional(),
   saleRewardId: z.nullable(z.string()).optional(),
   referralRewardId: z.nullable(z.string()).optional(),
+  customRewardId: z.nullable(z.string()).optional(),
   discountId: z.nullable(z.string()).optional(),
   applicationId: z.nullable(z.string()).optional(),
   bannedAt: z.nullable(z.string()).optional(),
@@ -1583,6 +1585,7 @@ export type PartnerEnrolledEventData$Outbound = {
   leadRewardId?: string | null | undefined;
   saleRewardId?: string | null | undefined;
   referralRewardId?: string | null | undefined;
+  customRewardId?: string | null | undefined;
   discountId?: string | null | undefined;
   applicationId?: string | null | undefined;
   bannedAt?: string | null | undefined;
@@ -1643,6 +1646,7 @@ export const PartnerEnrolledEventData$outboundSchema: z.ZodType<
   leadRewardId: z.nullable(z.string()).optional(),
   saleRewardId: z.nullable(z.string()).optional(),
   referralRewardId: z.nullable(z.string()).optional(),
+  customRewardId: z.nullable(z.string()).optional(),
   discountId: z.nullable(z.string()).optional(),
   applicationId: z.nullable(z.string()).optional(),
   bannedAt: z.nullable(z.string()).optional(),

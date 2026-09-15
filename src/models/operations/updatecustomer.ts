@@ -34,6 +34,10 @@ export type UpdateCustomerRequestBody = {
    * The customer's country in ISO 3166-1 alpha-2 format. Updating this field will only affect the customer's country in Dub's system (and has no effect on existing conversion events).
    */
   country?: string | undefined;
+  /**
+   * The date the customer canceled their subscription. Set to a timestamp to mark the subscription as canceled, or `null` to clear it (e.g. if they resubscribe).
+   */
+  subscriptionCanceledAt?: string | null | undefined;
 };
 
 export type UpdateCustomerRequest = {
@@ -177,6 +181,7 @@ export type UpdateCustomerRequestBody$Outbound = {
   externalId?: string | undefined;
   stripeCustomerId?: string | null | undefined;
   country?: string | undefined;
+  subscriptionCanceledAt?: string | null | undefined;
 };
 
 /** @internal */
@@ -191,6 +196,7 @@ export const UpdateCustomerRequestBody$outboundSchema: z.ZodType<
   externalId: z.string().optional(),
   stripeCustomerId: z.nullable(z.string()).optional(),
   country: z.string().optional(),
+  subscriptionCanceledAt: z.nullable(z.string()).optional(),
 });
 
 export function updateCustomerRequestBodyToJSON(
